@@ -20,7 +20,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Remove copying jwks
         run: |
-          grep -v jwt_secrets_pub js/docker/envoy.Dockerfile > js/docker/envoy.Dockerfile
+          grep -v jwt_secrets_pub js/docker/envoy.Dockerfile > /tmp/envoy.Dockerfile
+          mv /tmp/envoy.Dockerfile js/docker/envoy.Dockerfile
       - uses: docker/build-push-action@v2
         with:
           context: js/docker
