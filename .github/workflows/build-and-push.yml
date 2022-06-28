@@ -22,6 +22,18 @@ jobs:
         run: |
           grep -v jwt_secrets_pub js/docker/envoy.Dockerfile > /tmp/envoy.Dockerfile
           mv /tmp/envoy.Dockerfile js/docker/envoy.Dockerfile
+      - name: Replace jwks path
+        env:
+          FORCE_COLOR: 3
+        run: |
+          npx zx <<'EOF'
+          
+          const name = 'js/docker/envoy.yaml';
+          const replaced = fs.readFile(name).replace('/etc/jwt_secrets_pub.jwks', '/etc/jwks/jwt_secrets_pub.jwks');
+          fs.writeFile(name, replaced);
+          
+          EOF
+
       - uses: docker/build-push-action@v2
         with:
           context: js/docker
