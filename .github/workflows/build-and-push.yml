@@ -29,8 +29,8 @@ jobs:
           npx zx <<'EOF'
           
           const name = 'js/docker/envoy.yaml';
-          const replaced = fs.readFile(name).replace('/etc/jwt_secrets_pub.jwks', '/etc/jwks/jwt_secrets_pub.jwks');
-          fs.writeFile(name, replaced);
+          const replaced = fs.readFileSync(name).replace('/etc/jwt_secrets_pub.jwks', '/etc/jwks/jwt_secrets_pub.jwks');
+          fs.writeFileSync(name, replaced);
           
           EOF
 

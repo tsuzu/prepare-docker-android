@@ -5,6 +5,8 @@ services:
     container_name: emulator_envoy
     networks:
       - envoymesh
+    volumes:
+      - ./jwks:/etc/jwks/
     expose:
       - "8080"
       - "8001"
