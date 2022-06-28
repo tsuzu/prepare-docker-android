@@ -18,6 +18,9 @@ jobs:
           registry: ghcr.io
           username: tsuzu
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Remove copying jwks
+        run: |
+          grep -v jwt_secrets_pub js/docker/envoy.Dockerfile > js/docker/envoy.Dockerfile
       - uses: docker/build-push-action@v2
         with:
           context: js/docker
