@@ -21,7 +21,7 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           context: js/docker
-          file: envoy.Dockerfile
+          file: js/docker/envoy.Dockerfile
           push: true
           tags: ghcr.io/tsuzu/android-emulator-envoy
           cache-from: type=gha
@@ -61,7 +61,7 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           context: js
-          file: docker/nginx.Dockerfile
+          file: js/docker/nginx.Dockerfile
           push: true
           tags: ghcr.io/tsuzu/android-emulator-nginx
           cache-from: type=gha
